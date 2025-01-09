@@ -3,6 +3,8 @@ import logger from "morgan";
 import dotenv from "dotenv";
 import { connectDb } from "./config/db.connection.js";
 import userRouter from "./routes/user.routes.js";
+import { generatedErrors } from "./utils/Error.js";
+
 const app = express();
 
 dotenv.config({
@@ -30,3 +32,5 @@ connectDb()
   .catch((error) => {
     console.log("Database Connection Error", error.message);
   });
+
+app.use(generatedErrors);
