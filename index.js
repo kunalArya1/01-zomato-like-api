@@ -1,6 +1,8 @@
 import express from "express";
 import logger from "morgan";
 import dotenv from "dotenv";
+import { connectDb } from "./config/db.connection.js";
+import userRouter from "./routes/user.routes.js";
 const app = express();
 
 dotenv.config({
@@ -17,7 +19,14 @@ app.get("/", (req, res) => {
 });
 
 // Routes for different
+app.use("/user", userRouter);
 
-app.listen(3000, () => {
-  console.log(`App is runnig on port ${process.env.PORT}`);
-});
+connectDb()
+  .then(() => {
+    app.listen(3000, () => {
+      console.log(`App is runnig on port ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log("Database Connection Error", error.message);
+  });
