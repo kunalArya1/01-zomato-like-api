@@ -1,9 +1,9 @@
 import express from "express";
 import logger from "morgan";
 import dotenv from "dotenv";
-import { connectDb } from "./config/db.connection.js";
-import userRouter from "./routes/user.routes.js";
-import { generatedErrors } from "./utils/Error.js";
+import { connectDb } from "./src/config/db.connection.js";
+import userRouter from "./src/routes/user.routes.js";
+import { generatedErrors } from "./src/utils/Error.js";
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use("/user", userRouter);
 
 connectDb()
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log(`App is runnig on port ${process.env.PORT}`);
     });
   })
