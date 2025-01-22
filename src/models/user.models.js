@@ -26,16 +26,16 @@ const userSchema = new Schema(
       required: true,
       minlength: 6,
     },
-    addresses: [addressModel],
+    // addresses: [addressModel],
   },
-  { timestamps: ture }
+  { timestamps: true }
 );
 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
-  const hashpassword = await bcrypt.hash(this.password);
+  const hashpassword = await bcrypt.hash(this.password, 10);
   this.password = hashpassword;
   next();
 });

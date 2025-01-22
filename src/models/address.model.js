@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const AddressShema = new Schema({
   street: {
@@ -16,4 +16,4 @@ const AddressShema = new Schema({
   },
 });
 
-export default model("Address", AddressShema);
+export default mongoose.model("Address", AddressShema);
