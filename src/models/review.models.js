@@ -15,6 +15,7 @@ const reviewModles = Schema({
     type: Schema.ObjectId,
     ref: User,
   },
+  
 });
 
-export default model("Review", reviewModles);
+export default model("Reviews", reviewModles);

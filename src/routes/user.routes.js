@@ -8,7 +8,7 @@ import {
   signIn,
   signUp,
 } from "../controllers/user.controllers.js";
-
+  
 const router = Router();
 
 router.route("/").get(landingPage);
